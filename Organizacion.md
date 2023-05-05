@@ -11,4 +11,9 @@ cambios en los .cc, especificamente:
 - cambios del tipo cMessage a cPacket en Generator.cc según como dicta la consigna
 - cambios en Queue.cc para solo encolar paquetes de tamaño aceptable también como dicta la consigna
 
+23:51 Gastón:
+- Compilamos y falló. En `Queue.cc` cambiaos en la linea 60:
+`par("bufferSize").longValue` por `.intValue()`
+- Agregamos los parametros que faltaban a los .ned
+
 
