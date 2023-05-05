@@ -6,6 +6,9 @@
 
 using namespace omnetpp;
 
+cOutVector bufferSizeVector;
+cOutVector packetDropVector;
+
 class Queue: public cSimpleModule {
 private:
     cQueue buffer;
@@ -45,7 +48,7 @@ void Queue::handleMessage(cMessage *msg) {
         // if packet in buffer, send next one
         if (!buffer.isEmpty()) {
             // dequeue packet
-            cMessage *pkt = (cMessage*) buffer.pop();
+            cPacket *pkt = (cPacket*) buffer.pop();
             // send packet
             send(pkt, "out");
             // start new service
@@ -53,8 +56,8 @@ void Queue::handleMessage(cMessage *msg) {
             scheduleAt(simTime() + serviceTime, endServiceEvent);
         }
     } else { // if msg is a data packet
-        // enqueue the packet
-        if (buffer.getLength() >= par("bufferSize").longValue()) {
+
+        if (buffer.getLength() >= par("bufferSize").intValue()) {
             // drop the packet
             delete msg;
             this->bubble("packet dropped");
@@ -63,7 +66,7 @@ void Queue::handleMessage(cMessage *msg) {
         else {
             // enqueue the packet
             buffer.insert(msg);
-            bufferSizeVector.record(buffer.getLenght());
+            bufferSizeVector.record(buffer.getLength());
             // if the server is idle
             if (!endServiceEvent->isScheduled()) {
                 // start the service
@@ -73,9 +76,6 @@ void Queue::handleMessage(cMessage *msg) {
         }
     }
 }
-
-cOutVector bufferSizeVector;
-cOutVector packetDropVector;
 
 
 
