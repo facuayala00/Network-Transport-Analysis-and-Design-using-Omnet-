@@ -74,13 +74,13 @@ network Network
     @display("bgl=2");
     submodules:
         nodeTx: NodeTx{
-        	@display("p=30,30")
+        	@display("p=30,30");
         }
         queue: Queue {
             @display("p=130,30");
         }
         nodeRx: NodeRx{
-        	@display("p=230,30")
+        	@display("p=230,30");
         }
         
     connections:
