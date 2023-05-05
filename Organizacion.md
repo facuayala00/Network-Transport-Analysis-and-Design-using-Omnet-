@@ -11,6 +11,14 @@ cambios en los .cc, especificamente:
 - cambios del tipo cMessage a cPacket en Generator.cc según como dicta la consigna
 - cambios en Queue.cc para solo encolar paquetes de tamaño aceptable también como dicta la consigna
 
+22:50 Benjamin:
+- Modificacion en el network.ned acorde a la consigna
+- Primer modificacion del omnetpp.ini 
+
+23:30 Benjamin:
+- El network.ned tenia una falla la cual no note y Gaston pudo solucionar (Me olvide de dos ;)
+- Modificacion del omnetpp.ini acorde a la consigna.
+
 23:51 Gastón:
 - Compilamos y falló. En `Queue.cc` cambiaos en la linea 60:
 `par("bufferSize").longValue` por `.intValue()`
