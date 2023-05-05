@@ -49,18 +49,34 @@ void Queue::handleMessage(cMessage *msg) {
             // send packet
             send(pkt, "out");
             // start new service
-            serviceTime = par("serviceTime");
+            serviceTime = pkt->getDuration();
             scheduleAt(simTime() + serviceTime, endServiceEvent);
         }
     } else { // if msg is a data packet
         // enqueue the packet
-        buffer.insert(msg);
-        // if the server is idle
-        if (!endServiceEvent->isScheduled()) {
-            // start the service
-            scheduleAt(simTime(), endServiceEvent);
+        if (buffer.getLength() >= par("bufferSize").longValue()) {
+            // drop the packet
+            delete msg;
+            this->bubble("packet dropped");
+            packetDropVector.record(1);
+        }
+        else {
+            // enqueue the packet
+            buffer.insert(msg);
+            bufferSizeVector.record(buffer.getLenght());
+            // if the server is idle
+            if (!endServiceEvent->isScheduled()) {
+                // start the service
+                scheduleAt(simTime(), endServiceEvent);
+
+            }
         }
     }
 }
+
+cOutVector bufferSizeVector;
+cOutVector packetDropVector;
+
+
 
 #endif /* QUEUE */
