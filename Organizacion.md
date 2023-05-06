@@ -28,4 +28,11 @@ cambios en los .cc, especificamente:
 19:31 Todos:
 - Tuvimos una profunda reflexion sobre Stuart Little
 - En base a la profunda reflexion tuvimos un debate sobre el valor del arte
+
+20:20 Todos:
+Fuimos decicidiendo que valores registrar para hacer los analisis.
+- packetes enviaos desde generador (packetGenVector)
+- packetes recibidos en sink (packetsReceivedVector)
+- estos dos parametros ayudan a ver la carga transmitida vs la carga recibida 
+- ya de la parte anterior registranmos el tamaño de la queue y los paquetes dropeados.
  
