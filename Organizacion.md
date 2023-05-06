@@ -24,4 +24,8 @@ cambios en los .cc, especificamente:
 `par("bufferSize").longValue` por `.intValue()`
 - Agregamos los parametros que faltaban a los .ned
 
-
+## 06-04-2023
+19:31 Todos:
+- Tuvimos una profunda reflexion sobre Stuart Little
+- En base a la profunda reflexion tuvimos un debate sobre el valor del arte
+ 
