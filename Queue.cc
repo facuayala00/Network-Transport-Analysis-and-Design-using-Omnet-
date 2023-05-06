@@ -6,14 +6,16 @@
 
 using namespace omnetpp;
 
-cOutVector bufferSizeVector;
-cOutVector packetDropVector;
 
 class Queue: public cSimpleModule {
 private:
     cQueue buffer;
     cMessage *endServiceEvent;
     simtime_t serviceTime;
+
+    //stats
+    cOutVector bufferSizeVector;
+    cOutVector packetDropVector;
 public:
     Queue();
     virtual ~Queue();
@@ -36,6 +38,10 @@ Queue::~Queue() {
 void Queue::initialize() {
     buffer.setName("buffer");
     endServiceEvent = new cMessage("endService");
+
+    //initialize
+    bufferSizeVector.SetName("bufferSize");
+    packetDropVector.SetName("packetDrop");
 }
 
 void Queue::finish() {
