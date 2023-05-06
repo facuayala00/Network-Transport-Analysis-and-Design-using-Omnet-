@@ -10,6 +10,10 @@ class Generator : public cSimpleModule {
 private:
     cMessage *sendMsgEvent;
     cStdDev transmissionStats;
+
+    // stats
+    cOutVector packetsGenVector;
+
 public:
     Generator();
     virtual ~Generator();
@@ -30,6 +34,8 @@ Generator::~Generator() {
 }
 
 void Generator::initialize() {
+    // Initialize stats
+    packetGenVector.setName("packetGen");
     transmissionStats.setName("TotalTransmissions");
     // create the send packet
     sendMsgEvent = new cMessage("sendEvent");
@@ -48,6 +54,9 @@ void Generator::handleMessage(cMessage *msg) {
     pkt->setByteLength(par("packetByteSize"));
     // send to the output
     send(pkt, "out");
+
+    // Record stats
+    packetGenVector.record();
 
     // compute the new departure time
     simtime_t departureTime = simTime() + par("generationInterval");
