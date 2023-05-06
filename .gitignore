@@ -3,6 +3,6 @@
 .project
 .qtenvrc
 General.anf
-.settings
-results/
+.settings/*
+results/*
 Lab03Posta
