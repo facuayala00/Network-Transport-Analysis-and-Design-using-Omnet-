@@ -45,5 +45,6 @@ la media sin punto es en vez de `0.1` ponemos `01`
 ## 07-05-2023
 18:18 Gastón:
 Generamos los datos del caso 1 para media 0.2 a 0.5 en saltos de 0.1 
-
+18:24 
+Generamos los datos del caso 2 para media 0.1 a 0.5 en saltos de 0.1
 
