@@ -35,7 +35,7 @@ Generator::~Generator() {
 
 void Generator::initialize() {
     // Initialize stats
-    packetGenVector.setName("packetGen");
+    packetsGenVector.setName("packetGen");
     transmissionStats.setName("TotalTransmissions");
     // create the send packet
     sendMsgEvent = new cMessage("sendEvent");
@@ -56,7 +56,7 @@ void Generator::handleMessage(cMessage *msg) {
     send(pkt, "out");
 
     // Record stats
-    packetGenVector.record();
+    packetsGenVector.record(1);
 
     // compute the new departure time
     simtime_t departureTime = simTime() + par("generationInterval");
