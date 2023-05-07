@@ -35,4 +35,9 @@ Fuimos decicidiendo que valores registrar para hacer los analisis.
 - packetes recibidos en sink (packetsReceivedVector)
 - estos dos parametros ayudan a ver la carga transmitida vs la carga recibida 
 - ya de la parte anterior registranmos el tamaño de la queue y los paquetes dropeados.
- 
+  
+21:28 Todos:
+Genereamos la primera tanda de datos para el caso 1 con media 0.1
+nota imporante para los formatos:
+el formato de archivo es `CasoNUMERODECASO_MEDIASINPUNTO`
+la media sin punto es en vez de `0.1` ponemos `01`
