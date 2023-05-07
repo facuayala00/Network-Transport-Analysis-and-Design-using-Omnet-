@@ -24,7 +24,7 @@ cambios en los .cc, especificamente:
 `par("bufferSize").longValue` por `.intValue()`
 - Agregamos los parametros que faltaban a los .ned
 
-## 06-04-2023
+## 06-05-2023
 19:31 Todos:
 - Tuvimos una profunda reflexion sobre Stuart Little
 - En base a la profunda reflexion tuvimos un debate sobre el valor del arte
@@ -41,3 +41,9 @@ Genereamos la primera tanda de datos para el caso 1 con media 0.1
 nota imporante para los formatos:
 el formato de archivo es `CasoNUMERODECASO_MEDIASINPUNTO`
 la media sin punto es en vez de `0.1` ponemos `01`
+
+## 07-05-2023
+18:18 Gastón:
+Generamos los datos del caso 1 para media 0.2 a 0.5 en saltos de 0.1 
+
+
