@@ -8,6 +8,26 @@ simple Generator
         output out;
 }
 
+simple Queue
+{
+    parameters:
+        volatile double serviceTime; // sec
+        int bufferSize;
+        @display("i=block/queue;q=buffer");
+    gates:
+        input in;
+        output out;
+}
+
+simple Sink
+{
+    parameters:
+        @display("i=block/sink");
+    gates:
+        input in;
+}
+
+
 module NodeTx
 {
     	parameters:
@@ -52,24 +72,6 @@ module NodeRx
 }
 
 
-simple Queue
-{
-    parameters:
-        volatile double serviceTime; // sec
-        int bufferSize;
-        @display("i=block/queue;q=buffer");
-    gates:
-        input in;
-        output out;
-}
-
-simple Sink
-{
-    parameters:
-        @display("i=block/sink");
-    gates:
-        input in;
-}
 
 network Network
 {

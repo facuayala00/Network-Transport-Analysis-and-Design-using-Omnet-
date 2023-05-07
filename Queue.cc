@@ -40,8 +40,8 @@ void Queue::initialize() {
     endServiceEvent = new cMessage("endService");
 
     //initialize
-    bufferSizeVector.SetName("bufferSize");
-    packetDropVector.SetName("packetDrop");
+    bufferSizeVector.setName("bufferSize");
+    packetDropVector.setName("packetDrop");
 }
 
 void Queue::finish() {
