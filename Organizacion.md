@@ -48,3 +48,8 @@ Generamos los datos del caso 1 para media 0.2 a 0.5 en saltos de 0.1
 18:24 
 Generamos los datos del caso 2 para media 0.1 a 0.5 en saltos de 0.1
 
+## 10-05-2023
+Gastón:
+Hoy modificamos el notebook del aula virtual para poder generar los gráficos
+Generamos los gráficos de delay y de comparación de bufferSize
+
