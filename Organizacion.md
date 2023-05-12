@@ -68,5 +68,9 @@ Caso1 y caso2:
 Vemos en que punto cambian los graficos del paso 0.2 a 0.3  
 Graficos para comparar como varia el segun el servicetime
 
-
+18:10 
+Empece el informe
+Graficos para paqeutes
+Graficos para carga util 
+Espero mejorar la carga util
 
