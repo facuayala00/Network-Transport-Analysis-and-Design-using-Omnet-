@@ -53,3 +53,10 @@ Gastón:
 Hoy modificamos el notebook del aula virtual para poder generar los gráficos
 Generamos los gráficos de delay y de comparación de bufferSize
 
+## 12-05-2023 
+Gastón 00:24 
+Hoy estuve a full con automatizar la corrida de las simulaciones  
+En la carpeta lab3python hice un notebook que pide una banda de cosas y corre todo automatico
+Las cosas que pide estan explicadas en el notebook y ojo que algunas son medio raras  
+Fue dificil pero no fue PARA NADA en vano  
+
