@@ -60,3 +60,13 @@ En la carpeta lab3python hice un notebook que pide una banda de cosas y corre to
 Las cosas que pide estan explicadas en el notebook y ojo que algunas son medio raras  
 Fue dificil pero no fue PARA NADA en vano  
 
+Gastón 15:24 
+Hice una banda de gráficos que incluyen
+Caso1 y caso2:
+  - bufferSize 
+  - Delays
+Vemos en que punto cambian los graficos del paso 0.2 a 0.3  
+Graficos para comparar como varia el segun el servicetime
+
+
+

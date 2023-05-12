@@ -1,9 +1,9 @@
-file 32373 1683897207                                           
+file 107129 1683915687                                          
 version 3
-run General-0-20230512-10:13:27-15040
+run General-0-20230512-15:21:27-19462
 attr configname General
-attr datetime 20230512-10:13:27
-attr datetimef 20230512-101327
+attr datetime 20230512-15:21:27
+attr datetimef 20230512-152127
 attr experiment General
 attr inifile /home/gasbon/Documents/Famaf/actual/redes/labs/lab3/omnetpp.ini
 attr iterationvars ""
@@ -11,7 +11,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network Network
-attr processid 15040
+attr processid 19462
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -20,14 +20,14 @@ attr seedset 0
 config cmdenv-express-mode true
 config network Network
 config sim-time-limit 200s
-config Network.nodeTx.gen.generationInterval exponential(1.0)
+config Network.nodeTx.gen.generationInterval exponential(0.3)
 config Network.nodeTx.gen.packetByteSize 12500
 config Network.queue.bufferSize 200
 config Network.nodeRx.queue.bufferSize 200
 config Network.nodeTx.queue.bufferSize 2000000
-config Network.nodeRx.queue.serviceTime exponential(0.001)
-config Network.nodeTx.queue.serviceTime exponential(0.001)
-config Network.queue.serviceTime exponential(0.001)
+config Network.nodeRx.queue.serviceTime exponential(0.1)
+config Network.nodeTx.queue.serviceTime exponential(0.1)
+config Network.queue.serviceTime exponential(0.1)
 
 vector 0 Network.nodeTx.gen packetGen ETV
 vector 1 Network.nodeTx.queue bufferSize ETV
@@ -35,10 +35,10 @@ vector 2 Network.queue bufferSize ETV
 vector 3 Network.nodeRx.queue bufferSize ETV
 vector 4 Network.nodeRx.sink Delay ETV
 vector 5 Network.nodeRx.sink packetReceived ETV
-0	1204 4975 1 2104 0.795874504566 198.972277210369 200 1 1 200 200
-1	6179 4975 2 2105 0.795874504566 198.972277210369 200 1 2 201 203
-2	11154 4975 5 2112 0.895974504566 199.109329163646 200 1 1 200 200
-3	16129 4975 8 2118 0.996074504566 199.209429163646 200 1 1 200 200
-4	21104 6292 10 2121 1.196074504566 199.609429163646 200 0.4002 0.740033572796 84.942252334608 36.787372140118
-5	27396 4976 10 2121 1.196074504566 199.609429163646 200 1 1 200 200
+0	1198 16589 1 6378 0.23876235137 199.88117027292 659 1 1 659 659
+1	17787 16589 2 6379 0.23876235137 199.88117027292 659 1 3 705 805
+2	34376 16591 5 6386 0.33886235137 199.98127027292 659 1 1 659 659
+3	50967 16570 8 6384 0.43896235137 199.937994876667 658 1 5 948 1814
+4	67537 23097 16 6381 0.63896235137 199.890564590261 655 0.4002 1.467640625766 377.10337942692 247.31286810946
+5	90634 16494 16 6381 0.63896235137 199.890564590261 655 1 1 655 655
 
