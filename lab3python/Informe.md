@@ -25,9 +25,7 @@ Debido a este intercambio, en los gráficos vamos a ver resultados similares ent
 | ![a](./graficosDef/caso1/bufferSize/caso1_0.1_buffer_size.png)|![b](./graficosDef/caso2/bufferSize/caso2_0.1_buffer_size.png)|
 *Ejemplo de similitud de Caso 1 y Caso 2 para media igual a 0.1.* 
 
-Ademas de la similitud en el tamaño de buffers, también son iguales para el delay de llegada de los paquetes, pues la tasa de transferencia total sigue siendo la misma. 
-
-> MOSTRAR SIMILITUD EN GEN, REB, Y PER DE PAQUETES 
+Ademas de la similitud en el tamaño de buffers, también son iguales para el delay de llegada de los paquetes, pues la tasa de transferencia total sigue siendo la misma. De misma manera, los paquetes envíados y recibidos son los mismos en cada caso.
 
 Por estas razones, **se van a mostrar solo gráficos del caso 1** para comparar las medias de generación.
 
@@ -41,20 +39,18 @@ Para le media se nos pidio que corramos para casos de $\lambda$ = 0.1 a 1.0. Lo 
 Por lo que **solo vamos a mostrar gráficos para $\lambda$ = 0.1, 0.2 y 0.3** . 
 
 ### Gráficos!
-
 Con lo previamente aclarado, los gráficos se van a presentar solo para el caso 1 con $\lambda$ = 0.1, 0.2 y 0.3.
+> Para "imaginar" el caso 2 hay que cambiar el color verde por naranja
 
 | $\lambda = 0.1$    | $\lambda = 0.2$ | $\lambda = 0.3$|
 |---------------- | --------------- | --------------- |
 | ![a](./graficosDef/caso1/bufferSize/caso1_0.1_buffer_size.png) | ![b](./graficosDef/caso1/bufferSize/caso1_0.2_buffer_size.png) | ![c](./graficosDef/caso1/bufferSize/caso1_0.3_buffer_size.png)|
 | ![d](./graficosDef/caso1/delay/caso1_0.1_delay.png)| ![e](./graficosDef/caso1/delay/caso1_0.2_delay.png) | ![f](./graficosDef/caso1/delay/caso1_0.3_delay.png)|
-| GRAFICOS DE PAQUETES 0.1 | IDEM 0.2 | IDEM 0.3 | 
+| ![g](./graficosDef/caso1/paquetes/caso1_0.1_paquetes.png) | ![h](./graficosDef/caso1/paquetes/caso1_0.2_paquetes.png) | ![i](./graficosDef/caso1/paquetes/caso1_0.3_paquetes.png) | 
 
+Podemos observar como en un intervalo chico de generación ($\lambda$ = 0.1) la red se satura y hay perdida de paquetes. Al aumentar el intervalo, disminuye la saturación de la red y empeizan a haber menos perdida de paquetes y llegan con menor delay. El problema de esto se puede observar en el siguiente gráfico:
 
-
-
-
-
+![carga_util](./graficosDef/expCargaUtil/cargaUtil/carga_util_vs_carga_ofrecida.png)
 
 
 
