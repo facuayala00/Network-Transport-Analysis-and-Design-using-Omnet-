@@ -71,5 +71,39 @@ void TransportTx::finish() {
 }
 
 
+void TransportTx::sendPacket() {
+    if (!buffer.isEmpty()) {
+        // Dequeue packet
+        cPacket *pkt = (cPacket *)buffer.pop();
+
+        // Send packet
+        send(pkt, "toOut$o");
+
+        // Start new service when the packet is sent
+        simtime_t serviceTime = pkt->getDuration();
+        serviceTime = (serviceTime + (serviceTime * contScalar));
+        scheduleAt(simTime() + serviceTime, endServiceEvent);
+    }
+}
+
+void TransportTx::enqueueMessage(cMessage *msg) {
+    if (buffer.getLength() >= par("bufferSize").intValue()) {
+        // Drop the packet
+        delete msg;
+
+        // Animate loss
+        this->bubble("packet dropped");
+    } else {
+        // Enqueue the packet
+        buffer.insert(msg);
+
+        if (!endServiceEvent->isScheduled()) {
+            // If there are no messages being sent, send this one now
+            scheduleAt(simTime() + 0, endServiceEvent);
+        }
+    }
+}
+
+
 
 #endif /* Transporte Tx */
