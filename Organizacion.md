@@ -74,3 +74,14 @@ Graficos para paqeutes
 Graficos para carga util 
 Espero mejorar la carga util
 
+## 15-05 
+Benja:
+empezar los cambios parte 2 
+
+Benja y Gaston:
+Estuvimos pensando que algoritmo implementar y llegamos a dos opciones similares basadas en un umbral dado por los tamaños de los buffers: 
+- Primera opcion: dar un umbral fijo al ejecutar que se puede cambiar de sim en sim  
+- Segunda opcion: dar un umbral que arranca fijo y va incrementando de a poquito  
+La idea es que una vez cruzado el ubmral se disminuye la tasa de envio.  
+
+
