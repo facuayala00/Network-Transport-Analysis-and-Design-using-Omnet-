@@ -64,7 +64,7 @@ void TransportTx::initialize() {
     endServiceEvent = new cMessage("endService");
 
     // Initialize stats
-    bufferSizeVector.setName("buffer size");
+    bufferSizeVector.setName("bufferSize");
 }
 
 void TransportTx::finish() {

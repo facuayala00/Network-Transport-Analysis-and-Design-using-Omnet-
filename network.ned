@@ -41,6 +41,7 @@ simple TransportRx
 {
     parameters:
         int bufferSize;
+        int umbralPercentage
         @display("i=block/queue;q=buffer");
     gates:
         output toApp;
@@ -120,7 +121,7 @@ network Network
         nodeTx.out --> { datarate = 1Mbps; delay = 100us; } --> queue0.in;
 
         //case study 1:
-        queue0.out --> { datarate = 0.8Mbps; delay = 100us; } --> nodeRx.in;
+        queue0.out --> { datarate = 1Mbps; delay = 100us; } --> nodeRx.in;
         //case study 2:
         //queue0.out --> { datarate = 0.5Mbps; delay = 100us; } --> nodeRx.in;
 

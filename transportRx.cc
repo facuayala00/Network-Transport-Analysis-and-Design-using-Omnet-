@@ -1,37 +1,38 @@
-#ifndef TRANSPORTRX
-#define TRANSPORTRX
+#ifndef TRANSPORT_RX
+#define TRANSPORT_RX
 
-#include <string.h>
 #include <omnetpp.h>
+#include <string.h>
 
 #include "FeedbackPkt_m.h"
 
 using namespace omnetpp;
 
-
-class TransportRx: public cSimpleModule {
-private:
+class TransportRx : public cSimpleModule {
+  private:
+    // data
     cQueue buffer;
     cQueue bufferFeedback;
 
+    // events
     cMessage *endServiceEvent;
     cMessage *feedbackEvent;
 
-    simtime_t serviceTime;
-
-    //stats
+    // stats
     cOutVector bufferSizeVector;
     cOutVector packetDropVector;
 
-    // treshold
-    int treshold;
-    void setTreshold(float);
-    int getTreshold();
+    // functions
+    void sendPacket();
+    void sendFeedback();
+    void enqueueFeedback(cMessage *msg);
+    void enqueueMessage(cMessage *msg);
 
-public:
+  public:
     TransportRx();
     virtual ~TransportRx();
-protected:
+
+  protected:
     virtual void initialize();
     virtual void finish();
     virtual void handleMessage(cMessage *msg);
@@ -41,107 +42,116 @@ Define_Module(TransportRx);
 
 TransportRx::TransportRx() {
     endServiceEvent = NULL;
+    feedbackEvent = NULL;
 }
 
 TransportRx::~TransportRx() {
     cancelAndDelete(endServiceEvent);
+    cancelAndDelete(feedbackEvent);
 }
 
 void TransportRx::initialize() {
-    buffer.setName("buffer");
-    endServiceEvent = new cMessage("endService");
+    buffer.setName("receptor status buffer");
+    bufferFeedback.setName("receptor feedback status buffer");
+    // Initialize events
     feedbackEvent = new cMessage("endFeedback");
-
-    //initialize
+    endServiceEvent = new cMessage("endService");
+    // Initialize stats
     bufferSizeVector.setName("bufferSize");
     packetDropVector.setName("packetDrop");
-
-    setTreshold(0.75);
 }
 
 void TransportRx::finish() {
+
 }
 
-void TransportRx::setTreshold(float percentage) {
+/* Send a packet from the queue */
+void TransportRx::sendPacket() {
+    // If there is a packet in buffer, send it
+    if (!buffer.isEmpty()) {
+        // Dequeue packet
+        cPacket *pkt = (cPacket *)buffer.pop();
+
+        // Send packet
+        send(pkt, "toApp");
+
+        // Start new service when the packet is sent
+        simtime_t serviceTime = pkt->getDuration();
+        scheduleAt(simTime() + serviceTime, endServiceEvent);
+    }
+}
+
+/* Enqueue message if there is space in the buffer */
+void TransportRx::enqueueMessage(cMessage *msg) {
     const int bufferMaxSize = par("bufferSize").intValue();
-    treshold = bufferMaxSize * percentage;
+    const int umbral = (par("umbralPercentage").intValue() / 100) * bufferMaxSize;
+
+    if (buffer.getLength() >= bufferMaxSize) {
+        // Drop the packet
+        delete msg;
+
+        // Animate loss
+        this->bubble("packet dropped");
+
+        // Update stats
+        packetDropVector.record(1);
+    } else {
+        if (buffer.getLength() >= umbral) {
+            FeedbackPkt *fbkPkt = new FeedbackPkt();
+            fbkPkt->setKind(2);
+            fbkPkt->setByteLength(1);
+            fbkPkt->setFullBufferR(true);
+            enqueueFeedback(fbkPkt);
+        }
+        // Enqueue the packet
+        buffer.insert(msg);
+
+        if (!endServiceEvent->isScheduled()) {
+            // If there are no messages being sent, send this one now
+            scheduleAt(simTime() + 0, endServiceEvent);
+        }
+    }
 }
 
-int TransportRx::getTreshold() {
-    return treshold;
+void TransportRx::sendFeedback() {
+    if (!bufferFeedback.isEmpty()) {
+        // Dequeue packet
+        FeedbackPkt *pkt = (FeedbackPkt *)bufferFeedback.pop();
+
+        // Send packet
+        send(pkt, "toOut$o");
+        scheduleAt(simTime() + pkt->getDuration(), feedbackEvent);
+    }
+}
+
+void TransportRx::enqueueFeedback(cMessage *msg) {
+    // Enqueue the packet
+    bufferFeedback.insert(msg);
+
+    if (!feedbackEvent->isScheduled()) {
+        // If there are no messages being sent, send this one now
+        scheduleAt(simTime() + 0, feedbackEvent);
+    }
 }
 
 void TransportRx::handleMessage(cMessage *msg) {
-    const int bufferMaxSize = par("bufferSize").intValue();
+    // Record stats
+    bufferSizeVector.record(buffer.getLength());
 
     if (msg->getKind() == 2) {
-        bufferFeedback.insert(msg);
-
-        if (!feedbackEvent->isScheduled()) {
-            // If there are no messages being sent, send this one now
-            scheduleAt(simTime() + 0, feedbackEvent);
+        enqueueFeedback(msg);
+    } else {
+        if (msg == endServiceEvent) {
+            // If msg is signaling an endServiceEvent
+            sendPacket();
+        } else if (msg == feedbackEvent) {
+            sendFeedback();
+        } else {
+            // If msg is a incoming massage
+            enqueueMessage(msg);
         }
     }
 
-    // if msg is signaling an endServiceEvent
-    if (msg == endServiceEvent) {
-        // if packet in buffer, send next one
-        if (!buffer.isEmpty()) {
-            // deTransportRx packet
-            cPacket *pkt = (cPacket*) buffer.pop();
-            // send packet
-            send(pkt, "toApp");
-            // start new service
-            serviceTime = pkt->getDuration();
-            scheduleAt(simTime() + serviceTime, endServiceEvent);
-        }
-
-    } else if (msg == feedbackEvent) { //
-
-        if (!bufferFeedback.isEmpty()) {
-            // Dequeue packet
-            FeedbackPkt *pkt = (FeedbackPkt *)bufferFeedback.pop();
-
-            // Send packet
-            send(pkt, "toOut$o");
-            scheduleAt(simTime() + pkt->getDuration(), feedbackEvent);
-        }
-
-    } else { //msg is normal
-
-        if (buffer.getLength() >= bufferMaxSize) {
-            // drop the packet
-            delete msg;
-            this->bubble("packet dropped");
-            packetDropVector.record(1);
-        }
-        else if (buffer.getLength() > this->getTreshold()) { //threshold is met
-            // we send feedback messages
-            FeedbackPkt *fdbPkt = new FeedbackPkt();
-            fdbPkt->setByteLength(20);
-            fdbPkt->setKind(2);
-            fdbPkt->setFullBufferR(true);
-            send(fdbPkt, "toOut$o");
-
-            bufferFeedback.insert(fdbPkt);
-            if (!feedbackEvent->isScheduled()) {
-                // If there are no messages being sent, send this one now
-                scheduleAt(simTime() + 0, feedbackEvent);
-            }
-
-        }
-        else {
-            // enqueue the packet
-            buffer.insert(msg);
-            bufferSizeVector.record(buffer.getLength());
-            // if the server is idle
-            if (!endServiceEvent->isScheduled()) {
-                // start the service
-                scheduleAt(simTime(), endServiceEvent);
-            }
-        }
-    }
 }
 
-
-#endif /* TransportRx */
+#endif /* TRANSPORT_RX */
