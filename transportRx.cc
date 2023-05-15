@@ -84,7 +84,7 @@ void TransportRx::sendPacket() {
 /* Enqueue message if there is space in the buffer */
 void TransportRx::enqueueMessage(cMessage *msg) {
     const int bufferMaxSize = par("bufferSize").intValue();
-    const int umbral = (par("umbralPercentage").intValue() / 100) * bufferMaxSize;
+    const int umbral = 0.80 * bufferMaxSize;
 
     if (buffer.getLength() >= bufferMaxSize) {
         // Drop the packet

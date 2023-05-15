@@ -41,7 +41,6 @@ simple TransportRx
 {
     parameters:
         int bufferSize;
-        int umbralPercentage
         @display("i=block/queue;q=buffer");
     gates:
         output toApp;
