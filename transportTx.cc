@@ -109,7 +109,7 @@ void TransportTx::handleMessage(cMessage *msg) {
     // Record stats
     bufferSizeVector.record(buffer.getLength());
 
-    if (simTime().dbl() - lastCong >= CONTROL_REGAIN_TIME && contScalar > 0.1) {
+    if (simTime().dbl() - lastCong >= 0.2 && contScalar > 0.1) {
             contScalar -= 0.1;
         }
 
@@ -118,7 +118,7 @@ void TransportTx::handleMessage(cMessage *msg) {
         FeedbackPkt *feedbackPkt = (FeedbackPkt *)msg;
 
         if (feedbackPkt->getFullBufferQueue() || feedbackPkt->getFullBufferR()) {
-            if (simTime().dbl() - lastCong >= CONTROL_TIMEOUT) {
+            if (simTime().dbl() - lastCong >= 0.1) {
                 contScalar += 0.1;
                 lastCong = simTime().dbl();
             }
