@@ -1,22 +1,23 @@
-file 50685 1684189514                                           
+file 51783 1684191052                                           
 version 3
-run General-0-20230515-19:25:09-47847
+run General-0-20230515-19:50:52-51975
 attr configname General
-attr datetime 20230515-19:25:09
-attr datetimef 20230515-192509
+attr datetime 20230515-19:50:52
+attr datetimef 20230515-195052
 attr experiment General
-attr inifile omnetpp.ini
+attr inifile /home/gasbon/Documents/Famaf/actual/redes/labs/lab3/omnetpp.ini
 attr iterationvars ""
 attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network Network
-attr processid 47847
+attr processid 51975
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
+config cmdenv-express-mode true
 config network Network
 config sim-time-limit 200s
 config Network.nodeTx.gen.generationInterval exponential(1.0)
@@ -34,10 +35,10 @@ vector 2 Network.queue0 bufferSize ETV
 vector 3 Network.nodeRx.transRx bufferSize ETV
 vector 4 Network.nodeRx.sink Delay ETV
 vector 5 Network.nodeRx.sink packetReceived ETV
-0	1104 4975 1 2104 0.795874504566 198.972277210369 200 1 1 200 200
-1	6079 14443 2 2111 0.795874504566 199.109229163646 581 0 2 202 204
-2	20522 4975 5 2112 0.895974504566 199.109329163646 200 1 1 200 200
-3	25497 13919 8 2122 0.996074504566 199.609429163646 560 0 1 200 200
-4	39416 6292 10 2121 1.196074504566 199.609429163646 200 0.4002 0.740033572796 84.942252334608 36.787372140118
-5	45708 4976 10 2121 1.196074504566 199.609429163646 200 1 1 200 200
+0	1188 4976 1 2121 0.795874504566 198.972277210369 200 1 1 200 200
+1	6164 14445 2 2125 0.795874504566 199.109229163646 581 0 2 202 204
+2	20609 4975 5 2127 0.895974504566 199.109329163646 200 1 1 200 200
+3	25584 14928 8 2141 1.096074504566 199.609429163646 600 0 1 200 200
+4	40512 6293 10 2140 1.196074504566 199.609429163646 200 0.4002 0.740033572796 84.942252334608 36.787372140118
+5	46805 4977 10 2140 1.196074504566 199.609429163646 200 1 1 200 200
 
