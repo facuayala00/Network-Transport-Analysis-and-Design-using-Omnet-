@@ -4,7 +4,7 @@
 #include <string.h>
 #include <omnetpp.h>
 
-#include "feedbackPkt_m.h"
+#include "FeedbackPkt_m.h"
 
 using namespace omnetpp;
 
@@ -64,11 +64,11 @@ void TransportRx::finish() {
 
 void TransportRx::setTreshold(float percentage) {
     const int bufferMaxSize = par("bufferSize").intValue();
-    this.treshold = bufferMaxSize * percentage;
+    treshold = bufferMaxSize * percentage;
 }
 
 int TransportRx::getTreshold() {
-    return this.treshold;
+    return treshold;
 }
 
 void TransportRx::handleMessage(cMessage *msg) {
@@ -117,8 +117,8 @@ void TransportRx::handleMessage(cMessage *msg) {
         }
         else if (buffer.getLength() > this->getTreshold()) { //threshold is met
             // we send feedback messages
-            FeedbackPkt *fbkPkt = new FeedbackPkt();
-            fbkPkt->setByteLength(20);
+            FeedbackPkt *fdbPkt = new FeedbackPkt();
+            fdbPkt->setByteLength(20);
             fdbPkt->setKind(2);
             fdbPkt->setFullBufferR(true);
             send(fdbPkt, "toOut$o");
@@ -141,7 +141,7 @@ void TransportRx::handleMessage(cMessage *msg) {
             }
         }
     }
-
+}
 
 
 #endif /* TransportRx */
