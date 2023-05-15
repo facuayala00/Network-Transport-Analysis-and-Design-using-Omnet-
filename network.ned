@@ -91,7 +91,7 @@ module NodeRx
 			//case study 1:
 //			transRx.toApp --> { datarate = 0.5Mbps; } --> sink.in;
 			//case study 2:
-			transRx.toApp --> { datarate = 1Mbps; } --> sink.in;
+			transRx.toApp --> { datarate = 	1Mbps; } --> sink.in;
 }
 
 
