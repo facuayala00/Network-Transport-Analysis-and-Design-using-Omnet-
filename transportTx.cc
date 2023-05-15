@@ -43,6 +43,33 @@ class TransportTx : public cSimpleModule {
 
 Define_Module(TransportTx);
 
+TransportTx::TransportTx() {
+    endServiceEvent = NULL;
+}
+
+TransportTx::~TransportTx() {
+    cancelAndDelete(endServiceEvent);
+}
+
+void TransportTx::initialize() {
+    buffer.setName("transmisor status buffer");
+
+    // Initialize timers
+    lastCong = 0;
+
+    // Initialize scalars
+    contScalar = 0.0;
+
+    // Initialize events
+    endServiceEvent = new cMessage("endService");
+
+    // Initialize stats
+    bufferSizeVector.setName("buffer size");
+}
+
+void TransportTx::finish() {
+}
+
 
 
 #endif /* Transporte Tx */
