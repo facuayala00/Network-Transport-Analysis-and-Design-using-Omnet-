@@ -1,9 +1,14 @@
-# Informe Lab 3 Redes
+# Estudio sobre control de flujo y congestión mediante simulaciones en Omnet++
+
+### Autores: 
+- Bonfils, Gastón
+- Lozano, Benjamin
+- Ayala, Facundo
 
 ## Introducción
-> introducimos el experimento dando el modelo de la red
-> los 2 casos de estudio
-> las dos partes del experimento
+
+Este proyecto tuvo como objetivo simular un modelo productor-consumidor a través de una red simple usando la herramienta Omnet++. Dicha red solo contaba con un único buffer intermedio que se podía llenar y perder paquetes.  
+El proyecto se estructuró en dos partes. La primera consistió en realizar mediciones sin la implementación de algoritmos de control de flujo y congestión. Posteriormenete, en la segunda parte se implementó un algoritmo simple de control de flujo y congestión.
 
 
 ## Experimentos
