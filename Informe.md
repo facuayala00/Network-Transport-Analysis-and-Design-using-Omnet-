@@ -7,15 +7,17 @@
 
 ## Introducción
 
-Este proyecto tuvo como objetivo simular un modelo productor-consumidor a través de una red simple usando la herramienta Omnet++. Dicha red solo contaba con un único buffer intermedio que se podía llenar y perder paquetes.  
-El proyecto se estructuró en dos partes. La primera consistió en realizar mediciones sin la implementación de algoritmos de control de flujo y congestión. Posteriormenete, en la segunda parte se implementó un algoritmo simple de control de flujo y congestión.
+Este proyecto tuvo como objetivo simular un modelo productor-consumidor a través de una red simple usando la herramienta Omnet++. Dicha red consistia en un nodo transmisor, un único buffer intermedio que se podía llenar y perder paquetes, y un nodo receptor.  
+El proyecto se estructuró en dos partes. La primera consistió en realizar mediciones sin la implementación de algoritmos de control de flujo y congestión. Posteriormenete, en la segunda parte se implementó un algoritmo simple de control de flujo y congestión. En ambas partes se deben estudiar dos casos similares haciendo variar un intervalo de generación de paquetes.  
 
 
 ## Experimentos
+Los casos de estudio consisten en cambiar las velocidades de transmisión de la cola intermedia y la velocidad de consumisión del nodo receptor. En ambos casos se dejaron constantes los tamaños de buffer y los tiempos de servicio de cada cola.   
 Se nos pidió correr simulaciones para cada caso haciendo variar el intervalo de generación de paquetes entre 0.1 y 1 en los cuales se tomaron las mediciones:  
   - Tamaño de cada buffer en cada momento    
   - Delay de entrega de los paquetes   
   - Paquetes generados, recibidos y perdidos  
+
 
 ### Aclaraciones sobre resultados similares o irrelevantes
 A la hora de correr los diferentes experimentos nos dimos cuenta que algunos casos de prueba no eran necesarios de hacer o que había casos con datos iguales. Con esto en cuenta, reducimos la cantidad de información redudante o irrelevante a mostrar. Justificamos con las siguientes aclaraciones.  
