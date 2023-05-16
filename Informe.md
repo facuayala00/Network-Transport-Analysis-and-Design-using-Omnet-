@@ -8,15 +8,15 @@
 
 ## Experimentos
 Se nos pidió correr simulaciones para cada caso haciendo variar el intervalo de generación de paquetes entre 0.1 y 1 en los cuales se tomaron las mediciones:  
-- Tamaño de cada buffer en cada momento  
-- Delay de entrega de los paquetes 
-- Paquetes generados, recibidos y perdidos
+  - Tamaño de cada buffer en cada momento    
+  - Delay de entrega de los paquetes   
+  - Paquetes generados, recibidos y perdidos  
 
 ### Aclaraciones sobre resultados similares o irrelevantes
-A la hora de correr los diferentes experimentos nos dimos cuenta que algunos casos de prueba no eran necesarios de hacer o que había casos con datos iguales. Con esto en cuenta, reducimos la cantidad de información redudante o irrelevante a mostrar. Justificamos con las siguientes aclaraciones. 
+A la hora de correr los diferentes experimentos nos dimos cuenta que algunos casos de prueba no eran necesarios de hacer o que había casos con datos iguales. Con esto en cuenta, reducimos la cantidad de información redudante o irrelevante a mostrar. Justificamos con las siguientes aclaraciones.  
 
 #### Diferencias entre caso 1 y caso 2
-La principal diferencia entre el caso 1 y 2 es entre el buffer del medio y el buffer del consumidor, lo cual define quien actúa como cuello de botella en la red. En el caso 1, lo limitante es la velocidad de consumo del receptor, mientras en el caso 2 es la velocidad de transmisión entre la cola del medio y el consumidor. 
+La principal diferencia entre el caso 1 y 2 es entre el buffer del medio y el buffer del consumidor, lo cual define quien actúa como cuello de botella en la red. En el caso 1, lo limitante es la velocidad de consumo del receptor, mientras en el caso 2 es la velocidad de transmisión entre la cola del medio y el consumidor.  
 Debido a este intercambio, en los gráficos vamos a ver resultados similares entre los casos pero con cambios en el buffer del nodo intermedio y el buffer del receptor. En el siguiente ejemplo se muestra esté fenomeno:
 
 
@@ -39,8 +39,7 @@ Para le media se nos pidio que corramos para casos de $\lambda$ = 0.1 a 1.0. Lo 
 Por lo que **solo vamos a mostrar gráficos para $\lambda$ = 0.1, 0.2 y 0.3** . 
 
 ### Gráficos!
-Con lo previamente aclarado, los gráficos se van a presentar solo para el caso 1 con $\lambda$ = 0.1, 0.2 y 0.3.
-> Para "imaginar" el caso 2 hay que cambiar el color verde por naranja
+Con lo previamente aclarado, los gráficos se van a presentar solo para el caso 1 con $\lambda$ = 0.1, 0.2 y 0.3. Ya que el caso 2 es lo mismo pero cambiando el color verde por naranja
 
 | $\lambda = 0.1$    | $\lambda = 0.2$ | $\lambda = 0.3$|
 |---------------- | --------------- | --------------- |
@@ -86,9 +85,14 @@ Como el envío y recibida de paquetes se mantiene igual, la carga útil también
 ![carga_util](./lab3python/graficosDef/parte2CargaUtil/cargaUtil/carga_util_vs_carga_ofrecida.png)
 
 ### Conclusión
-Haciendo el análisis de nuestros resultados podemos concluir lo siguiente: 
-  - Nuestro algoritmo no demostró mejorar los resultados 
-  - NOSE
+Haciendo el análisis de nuestros resultados podemos concluir que nuestro algoritmo de control de flujo y congestión que implementamos no provocó un cambio necesario para ver una mejora en el aprovechamiento de red. 
 
+## Discusión
+No habremos obtenido mejoras con nuestros cambios pero, por lo menos se pudo ver un caso donde nuestro algoritmo no funciona. En nuestros casos de estudio dejamos muchas variables fijas por lo que puede llegar a existir un caso específico en donde nuestra solución nos devuelva mejores resultados. 
 
+## Referencias
+
+  - [OMNeT++ Documentation](https://omnetpp.org/documentation/)
+  - Andrew S. Tanenbaum (2013) Redes de computadoras. 5ta edición
+  - Juan Fraire (2021) [Redes y Sistemas Distribuidos - Introducción a OMNeT++](https://www.youtube.com/watch?v=6J_0ZKquNWU&t) 
 
